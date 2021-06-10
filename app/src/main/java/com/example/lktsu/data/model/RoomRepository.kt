@@ -11,4 +11,8 @@ interface RoomRepository {
     suspend fun updatePhone2(id:Long, phone2: String): Int
     suspend fun updatePhone3(id:Long, phone3: String): Int
     suspend fun updateEmail(id:Long, email: String): Int
+
+    suspend fun getNewsList(): List<NewsEntity>
+    suspend fun getNews(id: Long) : NewsEntity
+    suspend fun insertNews(newsEntity: NewsEntity)
 }

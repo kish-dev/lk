@@ -6,41 +6,56 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-
+import com.example.lktsu.data.model.NewsEntity
+import com.example.lktsu.repositories.RoomRepositoryImpl
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import javax.inject.Inject
+@AndroidEntryPoint
 class NewsActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var roomRepositoryImpl: RoomRepositoryImpl
+    private lateinit var news: List<NewsEntity>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
 
+        runBlocking(Dispatchers.IO) {
+            news = roomRepositoryImpl.getNewsList()
+        }
+
         val nws1: TextView = findViewById(com.example.lktsu.R.id.news1)
-        nws1.setText("Внимание! Кафедра подготовила материалы для проведения испытания по дисциплине Электронные вычислительные машины и периферийные устройства")
+        nws1.text = news[0].title
         val nws2: TextView = findViewById(com.example.lktsu.R.id.news2)
-        nws2.setText("О технических работах в ЛК 12.11.2020 с 17-00 до 18-00")
+        nws2.text = news[1].title
         val nws3: TextView = findViewById(com.example.lktsu.R.id.news3)
-        nws3.setText("О технических работах в ЛК 11.11.2020 с 17-00 до 18-00")
+        nws3.text = news[2].title
         val nws4: TextView = findViewById(com.example.lktsu.R.id.news4)
-        nws4.setText("Занятия по физической культуре будут проходить дистанционно с 5.11 до 23.12.")
+        nws4.text = news[3].title
         val nws5: TextView = findViewById(com.example.lktsu.R.id.news5)
-        nws5.setText("О режиме работы кассы")
+        nws5.text = news[4].title
     }
 
     fun onClickNews(view: View?) {
         val intent = Intent(this@NewsActivity, MoreActivity::class.java)
         if (view != null) {
             if (view.getId() == R.id.news1) {
-                intent.putExtra("id", "n1")
+                intent.putExtra("id", "1")
             }
             else if (view.getId() == R.id.news2) {
-                intent.putExtra("id", "n2")
+                intent.putExtra("id", "2")
             }
             else if (view.getId() == R.id.news3) {
-                intent.putExtra("id", "n3")
+                intent.putExtra("id", "3")
             }
             else if (view.getId() == R.id.news4) {
-                intent.putExtra("id", "n4")
+                intent.putExtra("id", "4")
             }
             else if (view.getId() == R.id.news5) {
-                intent.putExtra("id", "n5")
+                intent.putExtra("id", "5")
             }
         }
         startActivity(intent)

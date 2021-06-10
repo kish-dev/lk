@@ -1,15 +1,18 @@
 package com.example.lktsu.repositories
 
 import android.util.Log
+import com.example.lktsu.data.model.NewsEntity
 import com.example.lktsu.data.model.RoomRepository
 import com.example.lktsu.data.model.StudentEntity
+import com.example.lktsu.data.room.NewsDAO
 import com.example.lktsu.data.room.StudentDAO
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class RoomRepositoryImpl @Inject constructor(
-    private val studentDAO: StudentDAO
+    private val studentDAO: StudentDAO,
+    private val newsDAO: NewsDAO
 ) : RoomRepository {
     override suspend fun getStudent(id: String): StudentEntity  {
         Log.e("Impl", "getStudent")
@@ -33,4 +36,13 @@ class RoomRepositoryImpl @Inject constructor(
 
     override suspend fun updateEmail(id: Long, email: String): Int =
         studentDAO.updateEmail(id, email)
+
+    override suspend fun getNewsList(): List<NewsEntity> =
+        newsDAO.readNewsList()
+
+    override suspend fun getNews(id: Long): NewsEntity =
+        newsDAO.readNews(id)
+
+    override suspend fun insertNews(newsEntity: NewsEntity) =
+        newsDAO.addNews(newsEntity)
 }
