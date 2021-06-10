@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lktsu.data.model.NewsEntity
+import com.example.lktsu.data.model.StatementEntity
 import com.example.lktsu.repositories.RoomRepositoryImpl
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +17,7 @@ class MoreActivity : AppCompatActivity() {
     lateinit var roomRepositoryImpl: RoomRepositoryImpl
 
     private lateinit var news: NewsEntity
+    private lateinit var statement: StatementEntity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,12 +25,25 @@ class MoreActivity : AppCompatActivity() {
 
         val arguments = intent.extras
         val name = arguments!!["id"].toString().toLong()
+        val type = arguments!!["type"].toString()
 
         var text: TextView = findViewById(R.id.textViewMore)
-        runBlocking(Dispatchers.IO) {
-            news = roomRepositoryImpl.getNews(name)
+        when(type) {
+            "statement" -> {
+                runBlocking(Dispatchers.IO) {
+                    statement = roomRepositoryImpl.getStatement(name)
+                }
+                text.text = statement.description
+
+            }
+            "news" -> {
+                runBlocking(Dispatchers.IO) {
+                    news = roomRepositoryImpl.getNews(name)
+                }
+                text.text = news.description
+            }
+
         }
-        text.text = news.description
 //        if (name == "s1"){
 //            text.text = "21.08.2020 16:06 - Новое Добавление/размножение события. Ответственный - Лисицын С.А." + "\n\n" +
 //                    "21.08.2020 16:06 - Новое Добавление примечания к событию. Ответственный - Лисицын С.А.. Примечание: бюджет" + "\n\n" +

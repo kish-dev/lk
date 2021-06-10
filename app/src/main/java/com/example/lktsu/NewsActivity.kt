@@ -43,18 +43,23 @@ class NewsActivity : AppCompatActivity() {
         val intent = Intent(this@NewsActivity, MoreActivity::class.java)
         if (view != null) {
             if (view.getId() == R.id.news1) {
+                intent.putExtra("type", "news")
                 intent.putExtra("id", "1")
             }
             else if (view.getId() == R.id.news2) {
+                intent.putExtra("type", "news")
                 intent.putExtra("id", "2")
             }
             else if (view.getId() == R.id.news3) {
+                intent.putExtra("type", "news")
                 intent.putExtra("id", "3")
             }
             else if (view.getId() == R.id.news4) {
+                intent.putExtra("type", "news")
                 intent.putExtra("id", "4")
             }
             else if (view.getId() == R.id.news5) {
+                intent.putExtra("type", "news")
                 intent.putExtra("id", "5")
             }
         }

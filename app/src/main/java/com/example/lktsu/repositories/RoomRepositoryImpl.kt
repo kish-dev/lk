@@ -3,8 +3,10 @@ package com.example.lktsu.repositories
 import android.util.Log
 import com.example.lktsu.data.model.NewsEntity
 import com.example.lktsu.data.model.RoomRepository
+import com.example.lktsu.data.model.StatementEntity
 import com.example.lktsu.data.model.StudentEntity
 import com.example.lktsu.data.room.NewsDAO
+import com.example.lktsu.data.room.StatementDAO
 import com.example.lktsu.data.room.StudentDAO
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -12,7 +14,8 @@ import javax.inject.Singleton
 @Singleton
 class RoomRepositoryImpl @Inject constructor(
     private val studentDAO: StudentDAO,
-    private val newsDAO: NewsDAO
+    private val newsDAO: NewsDAO,
+    private val statementDAO: StatementDAO
 ) : RoomRepository {
     override suspend fun getStudent(id: String): StudentEntity  {
         Log.e("Impl", "getStudent")
@@ -45,4 +48,13 @@ class RoomRepositoryImpl @Inject constructor(
 
     override suspend fun insertNews(newsEntity: NewsEntity) =
         newsDAO.addNews(newsEntity)
+
+    override suspend fun getStatementList(): List<StatementEntity> =
+        statementDAO.readStatementList()
+
+    override suspend fun getStatement(id: Long): StatementEntity =
+        statementDAO.readStatement(id)
+
+    override suspend fun insertStatement(statementEntity: StatementEntity) =
+        statementDAO.addStatement(statementEntity)
 }

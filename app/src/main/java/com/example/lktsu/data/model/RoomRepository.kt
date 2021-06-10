@@ -15,4 +15,8 @@ interface RoomRepository {
     suspend fun getNewsList(): List<NewsEntity>
     suspend fun getNews(id: Long) : NewsEntity
     suspend fun insertNews(newsEntity: NewsEntity)
+
+    suspend fun getStatementList(): List<StatementEntity>
+    suspend fun getStatement(id: Long) : StatementEntity
+    suspend fun insertStatement(statementEntity: StatementEntity)
 }

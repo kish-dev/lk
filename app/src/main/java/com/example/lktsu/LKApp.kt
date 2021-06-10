@@ -1,7 +1,9 @@
 package com.example.lktsu
 
 import android.app.Application
+import android.widget.Button
 import com.example.lktsu.data.model.NewsEntity
+import com.example.lktsu.data.model.StatementEntity
 import com.example.lktsu.data.model.StudentEntity
 import com.example.lktsu.di.DataStoreScope
 import com.example.lktsu.repositories.RoomRepositoryImpl
@@ -27,9 +29,16 @@ class LKApp : Application() {
                 roomRepositoryImpl.insertStudent(student)
             }
         }
-        for(news in newsList) {
+
+        for (news in newsList) {
             DataStoreScope.launch(Dispatchers.IO) {
                 roomRepositoryImpl.insertNews(news)
+            }
+        }
+
+        for (statement in statementList) {
+            DataStoreScope.launch(Dispatchers.IO) {
+                roomRepositoryImpl.insertStatement(statement)
             }
         }
     }
@@ -73,6 +82,30 @@ class LKApp : Application() {
                 title = "О режиме работы кассы",
                 description = "Внимание. До 15.10.2020 прием платежей в кассу ТулГУ (гл.корп.) осуществляется в следующем режиме: пн-чт 8.30-16.00, пт - 8.30-15.00, обед 12.12-13.00"
             ),
+        )
+
+        val statementList = listOf(
+            StatementEntity(
+                id = 1,
+                title = "Повышенная академическая стипендия студента/Повышенная академическая стипендия 3 уровня (выпускники)",
+                description =   "21.08.2020 16:06 - Новое Добавление/размножение события. Ответственный - Лисицын С.А." + "\n\n" +
+                        "21.08.2020 16:06 - Новое Добавление примечания к событию. Ответственный - Лисицын С.А.. Примечание: бюджет" + "\n\n" +
+                        "03.09.2020 00:04 - К исполнению. Изменение статуса события. Ответственный - Лисицын С.А."
+            ),
+            StatementEntity(
+                id = 2,
+                title = "Повышенная академическая стипендия студента/Повышенная академическая стипендия 3 уровня",
+                description = "25.01.2021 22:38 - Новое Добавление/размножение события. Ответственный - Лисицын С.А." + "\n\n" +
+                        "25.01.2021 22:38 - Новое Добавление примечания к событию. Ответственный - Лисицын С.А.. Примечание: бюджет" + "\n\n" +
+                        "27.01.2021 09:29 - Аннулировано. Изменение статуса события. Ответственный - Лисицын С.А."
+            ),
+            StatementEntity(
+                id = 3,
+                title = "Заявление на един.мат помощь в связи с необходимостью дорогостоящего лечения и (или) восстановления здоровья",
+                description = "01.06.2021 10:07 - Новое Добавление примечания к событию. Ответственный - Лисицын С.А.. Примечание: бюджет" + "\n\n" +
+                        "01.06.2021 10:07 - Новое Добавление/размножение события. Ответственный - Лисицын С.А." + "\n\n" +
+                        "07.06.2021 15:07 - К исполнению. Изменение статуса события. Ответственный - Лисицын С.А."
+            )
         )
     }
 }
