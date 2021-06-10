@@ -1,0 +1,20 @@
+com/example/lktsu/BuildConfig.java
+ com.example.lktsu.BuildConfig
+com/example/lktsu/databinding/ActivityMarksBinding.java
+ com.example.lktsu.databinding.ActivityMarksBinding
+com/example/lktsu/databinding/ActivityNewsBinding.java
+ com.example.lktsu.databinding.ActivityNewsBinding
+com/example/lktsu/databinding/ActivityContactsBinding.java
+ com.example.lktsu.databinding.ActivityContactsBinding
+com/example/lktsu/databinding/ActivityLoginBinding.java
+ com.example.lktsu.databinding.ActivityLoginBinding
+com/example/lktsu/databinding/ActivityMoreBinding.java
+ com.example.lktsu.databinding.ActivityMoreBinding
+com/example/lktsu/databinding/ActivityScheduleBinding.java
+ com.example.lktsu.databinding.ActivityScheduleBinding
+com/example/lktsu/databinding/ActivityStatementsBinding.java
+ com.example.lktsu.databinding.ActivityStatementsBinding
+com/example/lktsu/databinding/ActivityMainBinding.java
+ com.example.lktsu.databinding.ActivityMainBinding
+org/harrix/sqliteexample/DatabaseHelper.java
+ org.harrix.sqliteexample.DatabaseHelper
