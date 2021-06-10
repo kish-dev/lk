@@ -1,5 +1,5 @@
 package com.example.lktsu.data
 
 object Id {
-    var string: String = "172016"
+    var long: Long = 172016
 }

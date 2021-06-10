@@ -1,13 +1,8 @@
 package com.example.lktsu.repositories
 
 import android.util.Log
-import com.example.lktsu.data.model.NewsEntity
-import com.example.lktsu.data.model.RoomRepository
-import com.example.lktsu.data.model.StatementEntity
-import com.example.lktsu.data.model.StudentEntity
-import com.example.lktsu.data.room.NewsDAO
-import com.example.lktsu.data.room.StatementDAO
-import com.example.lktsu.data.room.StudentDAO
+import com.example.lktsu.data.model.*
+import com.example.lktsu.data.room.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -15,9 +10,11 @@ import javax.inject.Singleton
 class RoomRepositoryImpl @Inject constructor(
     private val studentDAO: StudentDAO,
     private val newsDAO: NewsDAO,
-    private val statementDAO: StatementDAO
+    private val statementDAO: StatementDAO,
+    private val marksDAO: MarksDAO,
+    private val historyDAO: HistoryDAO,
 ) : RoomRepository {
-    override suspend fun getStudent(id: String): StudentEntity  {
+    override suspend fun getStudent(id: Long): StudentEntity  {
         Log.e("Impl", "getStudent")
         return studentDAO.readStudent(id)
     }
@@ -57,4 +54,22 @@ class RoomRepositoryImpl @Inject constructor(
 
     override suspend fun insertStatement(statementEntity: StatementEntity) =
         statementDAO.addStatement(statementEntity)
+
+    override suspend fun getStudentMarks(studentId: Long): List<MarksEntity> =
+        marksDAO.readStudentMarks(studentId)
+
+    override suspend fun insertMark(marksEntity: MarksEntity) =
+        marksDAO.addMark(marksEntity)
+
+    override suspend fun getSemesterMarks(studentId: Long, semester: Long) =
+        marksDAO.readStudentMarksForSemester(studentId, semester)
+
+    override suspend fun getStudentMarksForSubject(studentId: Long, subject: String, semester: Int) =
+        marksDAO.readStudentMarkForSubject(studentId, subject, semester)
+
+    override suspend fun insertHistory(historyEntity: HistoryEntity) =
+        historyDAO.addHistory(historyEntity)
+
+    override suspend fun getHistory(number: Long) =
+        historyDAO.readHistory(number)
 }

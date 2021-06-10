@@ -12,7 +12,7 @@ interface StudentDAO {
     fun addStudent(student: StudentEntity)
 
     @Query("SELECT * FROM ${StudentEntity.TABLE_NAME} WHERE id=:id")
-    fun readStudent(id: String): StudentEntity
+    fun readStudent(id: Long): StudentEntity
 
     @Query("SELECT * FROM ${StudentEntity.TABLE_NAME}")
     fun readStudents(): List<StudentEntity>

@@ -9,6 +9,9 @@ data class StatementEntity(
     val id: Long,
     val title: String,
     val description: String,
+    val student_id: Long,
+    val number: Long,
+    val status: String,
 ) {
     companion object {
         const val TABLE_NAME = "statement_table"

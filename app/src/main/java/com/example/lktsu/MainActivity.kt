@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 //
 //        var name = ""
         DataStoreScope.launch(Dispatchers.IO) {
-            studentEntity = roomRepositoryImpl.getStudent(Id.string)
+            studentEntity = roomRepositoryImpl.getStudent(Id.long)
         }
 //        val cursor: Cursor = mDb.rawQuery("SELECT FIO FROM student", null)
 //        cursor.moveToFirst()

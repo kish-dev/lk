@@ -24,7 +24,7 @@ class ContactsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_contacts)
 
         runBlocking(Dispatchers.IO) {
-            student = roomRepositoryImpl.getStudent(Id.string)
+            student = roomRepositoryImpl.getStudent(Id.long)
         }
 
         val tel1: TextView = findViewById(R.id.Phone1)

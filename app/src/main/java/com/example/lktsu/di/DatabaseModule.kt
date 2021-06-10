@@ -2,10 +2,7 @@ package com.example.lktsu.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.lktsu.data.room.AppDatabase
-import com.example.lktsu.data.room.NewsDAO
-import com.example.lktsu.data.room.StatementDAO
-import com.example.lktsu.data.room.StudentDAO
+import com.example.lktsu.data.room.*
 import com.example.lktsu.repositories.RoomRepositoryImpl
 import dagger.Module
 import dagger.Provides
@@ -25,7 +22,7 @@ class DatabaseModule {
         result = Room.databaseBuilder(
             context,
             AppDatabase::class.java,
-            "students_news_statements.db"
+            "lk_for_students.db"
         ).build()
 
         return result
@@ -48,12 +45,24 @@ class DatabaseModule {
     }
 
     @Provides
+    fun provideMarksDAO(database: AppDatabase): MarksDAO{
+        return database.marksDAO()
+    }
+
+    @Provides
+    fun provideHistoryDAO(database: AppDatabase): HistoryDAO {
+        return database.historyDAO()
+    }
+
+    @Provides
     @Singleton
     fun provideRoomRepositoryImpl(
         studentDAO: StudentDAO,
         newsDAO: NewsDAO,
-        statementDAO: StatementDAO
+        statementDAO: StatementDAO,
+        marksDAO: MarksDAO,
+        historyDAO: HistoryDAO
     ): RoomRepositoryImpl =
-        RoomRepositoryImpl(studentDAO, newsDAO, statementDAO)
+        RoomRepositoryImpl(studentDAO, newsDAO, statementDAO, marksDAO, historyDAO)
 
 }

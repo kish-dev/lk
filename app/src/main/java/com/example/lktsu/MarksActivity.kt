@@ -1,13 +1,24 @@
 package com.example.lktsu
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lktsu.data.Id
+import com.example.lktsu.data.model.MarksEntity
+import com.example.lktsu.repositories.RoomRepositoryImpl
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class MarksActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var roomRepositoryImpl: RoomRepositoryImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -35,84 +46,92 @@ class MarksActivity : AppCompatActivity() {
                 parent: AdapterView<*>?,
                 itemSelected: View?, selectedItemPosition: Int, selectedId: Long
             ) {
+
                 if (smstr[selectedItemPosition] == "1"){
                     // из таблицы marks выбрать поля subjects + KM заносить в textView sbjc,
                         // а поля mark в textView mrk
                             // и так для различных семестров
                     textView = findViewById(com.example.lktsu.R.id.sbjct1)
-                    textView.setText("Всеобщая история (зч)")
+                    val semesterMarks = runBlocking(Dispatchers.IO) {
+                        roomRepositoryImpl.getSemesterMarks(Id.long, smstr[selectedItemPosition].toLong())
+                    }
+                    textView.text = "${semesterMarks[0].subject} (${semesterMarks[0].event})"
                     textView = findViewById(com.example.lktsu.R.id.mrk1)
-                    textView.setText("Зачет")
+                    textView.text = semesterMarks[0].mark
                     textView = findViewById(com.example.lktsu.R.id.sbjct2)
-                    textView.setText("Иностранный язык (зч)")
+                    textView.text = "${semesterMarks[1].subject} (${semesterMarks[1].event})"
                     textView = findViewById(com.example.lktsu.R.id.mrk2)
-                    textView.setText("Зачет")
+                    textView.text = semesterMarks[1].mark
                     textView = findViewById(com.example.lktsu.R.id.sbjct3)
-                    textView.setText("Информатика (ДЗ)")
+                    textView.text = "${semesterMarks[2].subject} (${semesterMarks[2].event})"
                     textView = findViewById(com.example.lktsu.R.id.mrk3)
-                    textView.setText("5")
+                    textView.text = semesterMarks[2].mark
                     textView = findViewById(com.example.lktsu.R.id.sbjct4)
-                    textView.setText("История России (Э)")
+                    textView.text = "${semesterMarks[3].subject} (${semesterMarks[3].event})"
                     textView = findViewById(com.example.lktsu.R.id.mrk4)
-                    textView.setText("5")
+                    textView.text = semesterMarks[3].mark
                     textView = findViewById(com.example.lktsu.R.id.sbjct5)
-                    textView.setText("Математика (Э)")
+                    textView.text = "${semesterMarks[4].subject} (${semesterMarks[4].event})"
                     textView = findViewById(com.example.lktsu.R.id.mrk5)
-                    textView.setText("4")
+                    textView.text = semesterMarks[4].mark
                     textView = findViewById(com.example.lktsu.R.id.sbjct6)
-                    textView.setText("Правоведение и противодействие коррупции (зч)")
+                    textView.text = "${semesterMarks[5].subject} (${semesterMarks[5].event})"
                     textView = findViewById(com.example.lktsu.R.id.mrk6)
-                    textView.setText("Зачет")
+                    textView.text = semesterMarks[5].mark
                     textView = findViewById(com.example.lktsu.R.id.sbjct7)
-                    textView.setText("Управление проектной деятельностью и бизнес-планирование (ДЗ)")
+                    textView.text = "${semesterMarks[6].subject} (${semesterMarks[6].event})"
                     textView = findViewById(com.example.lktsu.R.id.mrk7)
-                    textView.setText("5")
+                    textView.text = semesterMarks[6].mark
                     textView = findViewById(com.example.lktsu.R.id.sbjct8)
-                    textView.setText("Физическая культура и спорт (зч)")
+                    textView.text = "${semesterMarks[7].subject} (${semesterMarks[7].event})"
                     textView = findViewById(com.example.lktsu.R.id.mrk8)
-                    textView.setText("Зачет")
+                    textView.text = semesterMarks[7].mark
                 }
                 else if (smstr[selectedItemPosition] == "6"){
+
+                    val semesterMarks = runBlocking(Dispatchers.IO) {
+                        roomRepositoryImpl.getSemesterMarks(Id.long, smstr[selectedItemPosition].toLong())
+                    }
                     textView = findViewById(com.example.lktsu.R.id.sbjct1)
-                    textView.setText("Базы данных (КР)")
+                    textView.text = "${semesterMarks[0].subject} (${semesterMarks[0].event})"
                     textView = findViewById(com.example.lktsu.R.id.mrk1)
-                    textView.setText("5")
+                    textView.text = semesterMarks[0].mark
                     textView = findViewById(com.example.lktsu.R.id.sbjct2)
-                    textView.setText("Базы данных (Э)")
+                    textView.text = "${semesterMarks[1].subject} (${semesterMarks[1].event})"
                     textView = findViewById(com.example.lktsu.R.id.mrk2)
-                    textView.setText("5")
+                    textView.text = semesterMarks[1].mark
                     textView = findViewById(com.example.lktsu.R.id.sbjct3)
-                    textView.setText("Математическое моделирование экономических систем (ДЗ)")
+                    textView.text = "${semesterMarks[2].subject} (${semesterMarks[2].event})"
                     textView = findViewById(com.example.lktsu.R.id.mrk3)
-                    textView.setText("5")
+                    textView.text = semesterMarks[2].mark
                     textView = findViewById(com.example.lktsu.R.id.sbjct4)
-                    textView.setText("Научно-исследовательская работа (ДЗ)")
+                    textView.text = "${semesterMarks[3].subject} (${semesterMarks[3].event})"
                     textView = findViewById(com.example.lktsu.R.id.mrk4)
-                    textView.setText("5")
+                    textView.text = semesterMarks[3].mark
                     textView = findViewById(com.example.lktsu.R.id.sbjct5)
-                    textView.setText("Основы информационной безопасности экономических систем (зч)")
+                    textView.text = "${semesterMarks[4].subject} (${semesterMarks[4].event})"
                     textView = findViewById(com.example.lktsu.R.id.mrk5)
-                    textView.setText("Зачет")
+                    textView.text = semesterMarks[4].mark
                     textView = findViewById(com.example.lktsu.R.id.sbjct6)
-                    textView.setText("Предметно-ориентированные информационные системы в менеджменте (Э)")
+                    textView.text = "${semesterMarks[5].subject} (${semesterMarks[5].event})"
                     textView = findViewById(com.example.lktsu.R.id.mrk6)
-                    textView.setText("5")
+                    textView.text = semesterMarks[5].mark
                     textView = findViewById(com.example.lktsu.R.id.sbjct7)
-                    textView.setText("Проектирование информационных систем (зч)")
+                    textView.text = "${semesterMarks[6].subject} (${semesterMarks[6].event})"
                     textView = findViewById(com.example.lktsu.R.id.mrk7)
-                    textView.setText("Зачет")
+                    textView.text = semesterMarks[6].mark
                     textView = findViewById(com.example.lktsu.R.id.sbjct8)
-                    textView.setText("Социально-экономическая статистика (Э)")
+                    textView.text = "${semesterMarks[7].subject} (${semesterMarks[7].event})"
                     textView = findViewById(com.example.lktsu.R.id.mrk8)
-                    textView.setText("5")
+                    textView.text = semesterMarks[7].mark
                     textView = findViewById(com.example.lktsu.R.id.sbjct7)
-                    textView.setText("Физическая культура и спорт (элективные модули) (зч)")
+                    textView.text = "${semesterMarks[8].subject} (${semesterMarks[8].event})"
                     textView = findViewById(com.example.lktsu.R.id.mrk7)
-                    textView.setText("Зачет")
+                    textView.text = semesterMarks[8].mark
                     textView = findViewById(com.example.lktsu.R.id.sbjct8)
-                    textView.setText("Эконометрика (Э)")
+                    textView.text = "${semesterMarks[9].subject} (${semesterMarks[9].event})"
                     textView = findViewById(com.example.lktsu.R.id.mrk8)
-                    textView.setText("5")
+                    textView.text = semesterMarks[9].mark
                 }
             }
 

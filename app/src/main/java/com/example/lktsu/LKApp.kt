@@ -1,7 +1,8 @@
 package com.example.lktsu
 
 import android.app.Application
-import android.widget.Button
+import com.example.lktsu.data.Id
+import com.example.lktsu.data.model.MarksEntity
 import com.example.lktsu.data.model.NewsEntity
 import com.example.lktsu.data.model.StatementEntity
 import com.example.lktsu.data.model.StudentEntity
@@ -41,13 +42,20 @@ class LKApp : Application() {
                 roomRepositoryImpl.insertStatement(statement)
             }
         }
+
+        for (mark in marksList) {
+            DataStoreScope.launch(Dispatchers.IO) {
+                roomRepositoryImpl.insertMark(mark)
+            }
+        }
     }
 
-    //Тут лежат данные
+    // Тут лежат данные(можно удалить, загружаются только раз для каждого телефона,
+    // потом хранятся в базе данных
     companion object Data {
         val students = listOf(
             StudentEntity(
-                id = 172016,
+                id = Id.long,
                 name = "Мадеева Валерия Александровна",
                 group = "221071",
                 phone1 = "89586639724",
@@ -88,24 +96,180 @@ class LKApp : Application() {
             StatementEntity(
                 id = 1,
                 title = "Повышенная академическая стипендия студента/Повышенная академическая стипендия 3 уровня (выпускники)",
-                description =   "21.08.2020 16:06 - Новое Добавление/размножение события. Ответственный - Лисицын С.А." + "\n\n" +
+                description = "21.08.2020 16:06 - Новое Добавление/размножение события. Ответственный - Лисицын С.А." + "\n\n" +
                         "21.08.2020 16:06 - Новое Добавление примечания к событию. Ответственный - Лисицын С.А.. Примечание: бюджет" + "\n\n" +
-                        "03.09.2020 00:04 - К исполнению. Изменение статуса события. Ответственный - Лисицын С.А."
+                        "03.09.2020 00:04 - К исполнению. Изменение статуса события. Ответственный - Лисицын С.А.",
+                student_id = Id.long,
+                number = 1,
+                status = ""
             ),
             StatementEntity(
                 id = 2,
                 title = "Повышенная академическая стипендия студента/Повышенная академическая стипендия 3 уровня",
                 description = "25.01.2021 22:38 - Новое Добавление/размножение события. Ответственный - Лисицын С.А." + "\n\n" +
                         "25.01.2021 22:38 - Новое Добавление примечания к событию. Ответственный - Лисицын С.А.. Примечание: бюджет" + "\n\n" +
-                        "27.01.2021 09:29 - Аннулировано. Изменение статуса события. Ответственный - Лисицын С.А."
+                        "27.01.2021 09:29 - Аннулировано. Изменение статуса события. Ответственный - Лисицын С.А.",
+                student_id = Id.long,
+                number = 2,
+                status = ""
             ),
             StatementEntity(
                 id = 3,
                 title = "Заявление на един.мат помощь в связи с необходимостью дорогостоящего лечения и (или) восстановления здоровья",
                 description = "01.06.2021 10:07 - Новое Добавление примечания к событию. Ответственный - Лисицын С.А.. Примечание: бюджет" + "\n\n" +
                         "01.06.2021 10:07 - Новое Добавление/размножение события. Ответственный - Лисицын С.А." + "\n\n" +
-                        "07.06.2021 15:07 - К исполнению. Изменение статуса события. Ответственный - Лисицын С.А."
+                        "07.06.2021 15:07 - К исполнению. Изменение статуса события. Ответственный - Лисицын С.А.",
+                student_id = Id.long,
+                number = 3,
+                status = ""
             )
+        )
+
+        val marksList = listOf(
+            MarksEntity(
+                id = 1,
+                student_id = Id.long,
+                subject = "Всеобщая история",
+                mark = "Зачет",
+                semester = 1,
+                event = "зч"
+            ),
+            MarksEntity(
+                id = 2,
+                student_id = Id.long,
+                subject = "Иностранный язык",
+                mark = "Зачет",
+                semester = 1,
+                event = "зч"
+            ),
+            MarksEntity(
+                id = 3,
+                student_id = Id.long,
+                subject = "Информатика",
+                mark = "5",
+                semester = 1,
+                event = "ДЗ"
+            ),
+            MarksEntity(
+                id = 4,
+                student_id = Id.long,
+                subject = "История России",
+                mark = "5",
+                semester = 1,
+                event = "Э"
+            ),
+            MarksEntity(
+                id = 5,
+                student_id = Id.long,
+                subject = "Математика",
+                mark = "4",
+                semester = 1,
+                event = "Э"
+            ),
+            MarksEntity(
+                id = 6,
+                student_id = Id.long,
+                subject = "Правоведение и противодействии коррупции",
+                mark = "Зачет",
+                semester = 1,
+                event = "зч"
+            ),
+            MarksEntity(
+                id = 7,
+                student_id = Id.long,
+                subject = "Управление проектной деятельностью и бизнес-планирование",
+                mark = "5",
+                semester = 1,
+                event = "ДЗ"
+            ),
+            MarksEntity(
+                id = 8,
+                student_id = Id.long,
+                subject = "Физическая культура и спорт",
+                mark = "Зачет",
+                semester = 1,
+                event = "зч"
+            ),
+            MarksEntity(
+                id = 9,
+                student_id = Id.long,
+                subject = "Базы данных",
+                mark = "5",
+                semester = 6,
+                event = "КР"
+            ),
+            MarksEntity(
+                id = 10,
+                student_id = Id.long,
+                subject = "Базы данных",
+                mark = "5",
+                semester = 6,
+                event = "Э"
+            ),
+            MarksEntity(
+                id = 11,
+                student_id = Id.long,
+                subject = "Математическое моделирование экономических систием",
+                mark = "5",
+                semester = 6,
+                event = "ДЗ"
+            ),
+            MarksEntity(
+                id = 12,
+                student_id = Id.long,
+                subject = "Научно-исследовательская работа",
+                mark = "5",
+                semester = 6,
+                event = "ДЗ"
+            ),
+            MarksEntity(
+                id = 13,
+                student_id = Id.long,
+                subject = "Основы информационной безопасности экономических систем",
+                mark = "Зачет",
+                semester = 6,
+                event = "зч"
+            ),
+            MarksEntity(
+                id = 14,
+                student_id = Id.long,
+                subject = "Предметно-ориентированные информационные системы в менеджменте",
+                mark = "5",
+                semester = 6,
+                event = "Э"
+            ),
+            MarksEntity(
+                id = 15,
+                student_id = Id.long,
+                subject = "Проектирование информационных систем",
+                mark = "Зачет",
+                semester = 6,
+                event = "зч"
+            ),
+            MarksEntity(
+                id = 16,
+                student_id = Id.long,
+                subject = "Социально-экономическая статистика",
+                mark = "5",
+                semester = 6,
+                event = "Э"
+            ),
+            MarksEntity(
+                id = 17,
+                student_id = Id.long,
+                subject = "Физическая культура и спорт (элективные модули)",
+                mark = "Зачет",
+                semester = 6,
+                event = "зч"
+            ),
+            MarksEntity(
+                id = 18,
+                student_id = Id.long,
+                subject = "Эконометрика",
+                mark = "5",
+                semester = 6,
+                event = "Э"
+            ),
         )
     }
 }
