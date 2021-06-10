@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.lktsu"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="30" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+        android:debuggable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="ЛК ТулГУ"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:testOnly="true"
+        android:theme="@style/Theme.LKTSU"
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name="com.example.lktsu.ContactsActivity"
+            android:label="Контактные данные" />
+        <activity
+            android:name="com.example.lktsu.ui.login.LoginActivity"
+            android:label="Авторизация" />
+        <activity
+            android:name="com.example.lktsu.StatementsActivity"
+            android:label="Заявления" />
+        <activity
+            android:name="com.example.lktsu.MarksActivity"
+            android:label="Успеваемость" />
+        <activity
+            android:name="com.example.lktsu.ScheduleActivity"
+            android:label="Расписание" />
+        <activity android:name="com.example.lktsu.MoreActivity" />
+        <activity
+            android:name="com.example.lktsu.NewsActivity"
+            android:label="Новости" />
+        <activity android:name="com.example.lktsu.MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

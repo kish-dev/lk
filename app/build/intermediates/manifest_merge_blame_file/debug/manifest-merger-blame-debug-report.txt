@@ -1,0 +1,92 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.lktsu"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:5:5-67
+11-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:5:22-64
+12
+13    <application
+13-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:7:5-41:19
+14        android:allowBackup="true"
+14-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:8:9-35
+15        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+15-->[androidx.core:core:1.3.1] C:\Users\karar\.gradle\caches\transforms-2\files-2.1\0d9b4b6e754993184fc696eaa1c023bb\core-1.3.1\AndroidManifest.xml:24:18-86
+16        android:debuggable="true"
+17        android:icon="@mipmap/ic_launcher"
+17-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:9:9-43
+18        android:label="ЛК ТулГУ"
+18-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:10:9-33
+19        android:roundIcon="@mipmap/ic_launcher_round"
+19-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:11:9-54
+20        android:supportsRtl="true"
+20-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:12:9-35
+21        android:testOnly="true"
+22        android:theme="@style/Theme.LKTSU"
+22-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:13:9-43
+23        android:usesCleartextTraffic="true" >
+23-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:14:9-44
+24        <activity
+24-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:15:9-17:58
+25            android:name="com.example.lktsu.ContactsActivity"
+25-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:16:13-45
+26            android:label="Контактные данные" />
+26-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:17:13-46
+27        <activity
+27-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:18:9-20:43
+28            android:name="com.example.lktsu.ui.login.LoginActivity"
+28-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:19:13-51
+29            android:label="Авторизация" />
+29-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:20:13-40
+30        <activity
+30-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:21:9-23:41
+31            android:name="com.example.lktsu.StatementsActivity"
+31-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:22:13-47
+32            android:label="Заявления" />
+32-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:23:13-38
+33        <activity
+33-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:24:9-26:44
+34            android:name="com.example.lktsu.MarksActivity"
+34-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:25:13-42
+35            android:label="Успеваемость" />
+35-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:26:13-41
+36        <activity
+36-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:27:9-29:42
+37            android:name="com.example.lktsu.ScheduleActivity"
+37-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:28:13-45
+38            android:label="Расписание" />
+38-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:29:13-39
+39        <activity android:name="com.example.lktsu.MoreActivity" />
+39-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:30:9-50
+39-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:30:19-47
+40        <activity
+40-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:31:9-33:39
+41            android:name="com.example.lktsu.NewsActivity"
+41-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:32:13-41
+42            android:label="Новости" />
+42-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:33:13-36
+43        <activity android:name="com.example.lktsu.MainActivity" >
+43-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:34:9-40:20
+43-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:34:19-47
+44            <intent-filter>
+44-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:35:13-39:29
+45                <action android:name="android.intent.action.MAIN" />
+45-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:36:17-69
+45-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:36:25-66
+46
+47                <category android:name="android.intent.category.LAUNCHER" />
+47-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:38:17-77
+47-->C:\Users\karar\AndroidStudioProjects\LKTSU\app\src\main\AndroidManifest.xml:38:27-74
+48            </intent-filter>
+49        </activity>
+50    </application>
+51
+52</manifest>
