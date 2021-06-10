@@ -1,7 +1,6 @@
 package com.example.lktsu
 
 import android.content.Intent
-import android.database.Cursor
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
@@ -9,56 +8,71 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lktsu.data.Id
+import com.example.lktsu.data.model.StudentEntity
+import com.example.lktsu.di.DataStoreScope
+import com.example.lktsu.repositories.RoomRepositoryImpl
 import com.example.lktsu.ui.login.LoginActivity
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.harrix.sqliteexample.DatabaseHelper
 import java.io.IOException
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    @Inject
+    lateinit var roomRepositoryImpl: RoomRepositoryImpl
+
+    private lateinit var studentEntity: StudentEntity
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        var mDBHelper: DatabaseHelper
-        var mDb: SQLiteDatabase
+//        var mDBHelper: DatabaseHelper
+//        var mDb: SQLiteDatabase
 
         super.onCreate(savedInstanceState)
         setContentView(com.example.lktsu.R.layout.activity_main)
 
-        mDBHelper = DatabaseHelper(this)
+//        mDBHelper = DatabaseHelper(this)
+//
+//        try {
+//            mDBHelper.updateDataBase()
+//        } catch (mIOException: IOException) {
+//            throw Error("UnableToUpdateDatabase")
+//        }
+//
+//        mDb = try {
+//            mDBHelper.writableDatabase
+//        } catch (mSQLException: SQLException) {
+//            throw mSQLException
+//        }
 
-        try {
-            mDBHelper.updateDataBase()
-        } catch (mIOException: IOException) {
-            throw Error("UnableToUpdateDatabase")
+//        var group: String
+//
+//        var name = ""
+        DataStoreScope.launch(Dispatchers.IO) {
+            studentEntity = roomRepositoryImpl.getStudent(Id.string)
         }
-
-        mDb = try {
-            mDBHelper.writableDatabase
-        } catch (mSQLException: SQLException) {
-            throw mSQLException
-        }
-
-        var group: String
-
-        var name = ""
-
-        val cursor: Cursor = mDb.rawQuery("SELECT FIO FROM student", null)
-        cursor.moveToFirst()
-        while (!cursor.isAfterLast()) {
-            name += cursor.getString(1).toString() + " | "
-            cursor.moveToNext()
-        }
-        cursor.close()
+//        val cursor: Cursor = mDb.rawQuery("SELECT FIO FROM student", null)
+//        cursor.moveToFirst()
+//        while (!cursor.isAfterLast()) {
+//            name += cursor.getString(1).toString() + " | "
+//            cursor.moveToNext()
+//        }
+//        cursor.close()
 
         //name = "Мадеева Валерия Александровна" // из таблицы student поле FIO по id = 172016
-        group = "221071" // из таблицы student поле group по id = 172016
+//        group = "221071" // из таблицы student поле group по id = 172016
 
         setContentView(com.example.lktsu.R.layout.activity_main)
 
         val textName: TextView = findViewById(com.example.lktsu.R.id.textName)
-        textName.setText(name)
+        textName.text = studentEntity.name
 
         val textGroup: TextView = findViewById(com.example.lktsu.R.id.textGroup)
-        textGroup.setText(group)
+        textGroup.text = studentEntity.group
     }
 
     fun onClickNews(view: View?) {
